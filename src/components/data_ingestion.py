@@ -6,6 +6,7 @@ import pandas as pd # type: ignore
 from sklearn.model_selection import train_test_split # type: ignore
 from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
 
 # required for taking input for data ingestion (like train_data path, test_data path,etc.)
 @dataclass # using data class not need to use __init__ method to initalize class varialble/properties
@@ -50,5 +51,9 @@ if __name__ == "__main__":
     
     data_transformation = DataTransformation()
     
-    data_transformation.inititate_data_transformation(train_path=train_data,test_path=test_data)
+    train_arr,test_arr,_= data_transformation.inititate_data_transformation(train_path=train_data,test_path=test_data)
+    
+    modelTrainer = ModelTrainer()
+    print(modelTrainer.initiate_model_training(train_arr=train_arr,test_arr=test_arr))
+    
     
