@@ -1,13 +1,10 @@
 import os
 import sys
-import numpy as np # type: ignore
-import pandas as pd # type: ignore
 from src.exception import CustomException
 from src.logger import logging
 import dill # type:ignore
 from sklearn.metrics import r2_score # type: ignore
 from sklearn.model_selection import GridSearchCV # type:ignore
-
 
 def save_object(file_path,obj):
     try:
@@ -18,6 +15,14 @@ def save_object(file_path,obj):
         with open(file_path,"wb") as file_obj:
             dill.dump(obj,file_obj)
         
+    except Exception as e:
+        raise CustomException(e,sys)
+
+def load_object(file_path):
+    try:
+        logging.info("Loading object")
+        with open(file_path,"rb") as file_obj:
+            return dill.load(file_obj)
     except Exception as e:
         raise CustomException(e,sys)
 
