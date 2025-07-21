@@ -1,6 +1,7 @@
 from flask import Flask, request,render_template # type: ignore
 from src.pipeline.predict_pipeline import CustomData,PredictPipeLine
 
+
 application = Flask(__name__)
 
 app = application
@@ -35,4 +36,4 @@ def predict_datapoint():
         return render_template("home.html",results = prediction_output[0])
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",debug=True,port=8000)
+    app.run(host="0.0.0.0")
